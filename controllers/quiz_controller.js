@@ -12,7 +12,10 @@ exports.answer = function(req, res){
 	}
 };
 
+exports.author= function(req, res){
 
+	res.render('/quizes/question/Creditos', {Author: 'JJesusGonzalez ® 2015'});
+	};
 /*
 var models = require('../models/models.js');
 
