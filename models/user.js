@@ -4,12 +4,12 @@ var key = process.env.PASSWORD_ENCRYPTION_KEY;
 
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define(
-        'User', 
-        { 
+        'User',
+        {
             username: {
                 type: DataTypes.STRING,
                 unique: true,
-                validate: { 
+                validate: {
                     notEmpty: {msg: "-> Falta username"},
                     // hay que devolver un mensaje de error si el username ya existe
                     isUnique: function (value, next) {
@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
             isAdmin: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
-            }    
+            }
         },
         {
             instanceMethods: {
@@ -50,7 +50,7 @@ module.exports = function(sequelize, DataTypes) {
                     var encripted = crypto.createHmac('sha1', key).update(password).digest('hex');
                     return encripted === this.password;
                 }
-            }    
+            }
         }
     );
 

@@ -2,17 +2,19 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <h1>Bienvenido a <%= title %></h1>
-  	<p>El portal donde podrás crear tus propios juegos !</p>
-  	<p><a href="/quizes/question"> Comencemos con el Juego</a></p>
+    <h1><%= title %></h1>
+    <hr/>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/quizes/question">Quiz</a></li>
+            <li><a href="/author">Author</a></li>
+        </ul>
+    </nav>
+    <footer><a href="https://github.com/JJesusGonzalez/quiz">Proyecto Quiz en GITHUB</a></footer>
   </body>
-  <footer>
-
-  <p><a href="/quizes/Creditos/author"> Author </a></p>
-
-  </footer>
 </html>
