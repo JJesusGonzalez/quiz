@@ -5,7 +5,7 @@ exports.authors = function(req,res){
 				Nacimiento: '1971',
 				Nacionalidad: 'Española',
 				Hobby: 'Todo lo que exista sobre el mundo digital',
-				Profesion: 'Técnico en Electromecánica (Ejerciendo desde 1988)',
+				Profesion: 'Técnico en Electromecánica (Ejerciendo desde 1990)',
 				errors: []
 
 	});
