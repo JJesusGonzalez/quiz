@@ -1,0 +1,8 @@
+<h3>Temas</h3>
+<ul>
+	<% var i; for (i=0; i < quizes.length; i++) { %>
+
+			<li><a name="<%= quizes[i].tema %>" href="temas/<%= quizes[i].tema %>"><%= quizes[i].tema %> </a></li>
+
+	<% } %>
+</ul><p>

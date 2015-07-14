@@ -1,0 +1,32 @@
+<form method="get" action="/quizes/<%= quiz.id %>/answer">
+	<%= quiz.pregunta %> <p>
+	<input type="text" name="respuesta" value="Respuesta"/>
+	<input type="submit" value="Enviar">
+</form>
+
+<p>
+	<a href="/quizes/<%= quiz.id %>/comments/new">
+		<button>Nuevo comentario</button>
+	</a>
+</p>
+
+<div class="panel panel-default table-responsive">
+  <div class="panel-heading">Comentarios</div>
+  <table class="table">
+    <tbody>
+		<%for(index in quiz.Comments){%>
+			<%if(quiz.Comments[index].publicado || session.user){%>
+				<tr><th>- <%=quiz.Comments[index].texto%>
+					<%if(session.user && !quiz.Comments[index].publicado){%>
+ 						<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">
+ 							<button>Publicar</button></a>
+ 					<%}%>
+ 				</th></tr>
+ 			<%}%>
+		<%}%>
+  </table>
+  </div>
+</div>
+<p>
+	<a href="/quizes">Volver</a>
+</p>
