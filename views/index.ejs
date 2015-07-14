@@ -1,20 +1,20 @@
-<h3>Bienvenido a <%= title %></h3>
-<table class="table">
-<tbody><tr><td>
-El portal donde podrá crear sus propios juegos!
-</td></tr>
-<tr><td text-align="center">
-
-</td></tr></tbody>
-</table>
-<div class="centerAlign">
-<a href="/quizes">
-    <button class="btn btn-default">
-    <span class="glyphicon glyphicon-question-sign"></span>
- Empezar!</button>
-</a>
-<div>
-<br>
-<br>
-<br>
-<br>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <hr/>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/quizes/question">Quiz</a></li>
+            <li><a href="/author">Author</a></li>
+        </ul>
+    </nav>
+    <footer><a href="https://github.com/JJesusGonzalez/quiz">Proyecto Quiz en GITHUB</a></footer>
+  </body>
+</html>
