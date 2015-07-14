@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <hr/>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/quizes/question">Quiz</a></li>
-            <li><a href="/author">Author</a></li>
-        </ul>
-    </nav>
-    <p>
-    <div class="contenedor">
-      	<%= respuesta %>
-    </div>
-    	<br>
-    	<a href="/quizes/<%= quiz.id %>">Volver</a>
-    </p>
-    <footer><a href="https://github.com/JJesusGonzalez/quiz">Proyecto Quiz en GITHUB</a></footer>
-  </body>
-</html>
+<p>
+	<%if (respuesta != 'Incorrecto') {%>
+		<div class="alert alert-success" role="alert">
+			<span class="glyphicon glyphicon-ok">
+			</span>
+			<%= respuesta %></div>
+	<%}else{%>
+		<div class="alert alert-danger" role="alert">
+			<span class="glyphicon glyphicon-remove">
+			</span>
+			<%= respuesta %>
+		</div>
+	<%}%>
+	<br>
+	<a href="/quizes/<%= quiz.id %>">Volver</a>
+</p>
