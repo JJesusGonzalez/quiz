@@ -3,37 +3,36 @@ JJesusGonzalez ® 2015
 Curso Desarrollo de servicios en la nube con HTML5, Javascript y node.js
 
 
-Modulo 6. Proyecto Quiz I: Patrón Modelo-Vista-Controlador (MVC); generación del proyecto con express-generator; Primera Página y Primera Pregunta; Despliegue en la nube (Heroku)
+Modulo 7. Proyecto Quiz II: La Base de Datos (DB), Tablas, sequelize.js y SQLite; Despliegue en Heroku utilizando Postgres; Presentación de Listas de Quizes y Autoload  
+
+ 
 Ejercicio P2P Obligatorio
 
 Explicación de la tarea
 
-Crear un repositorio en Github donde subir el proyecto que se les pide desarrollar en los siguientes apartados de esta práctica.
 
-El proyecto debe rehacer  el servidor Quiz desde cero, repitiendo los mismos pasos descritos en las transparencias de clase. No se permite clonar el repositorio oficial de la asignatura que aloja el servidor Quiz. Debe repetirse el desarrollo desde cero.
 
-Además se deben añadir los siguientes cambios a Quiz:
 
-1) Modificar el servidor Quiz para añadir un enlace en el píe de página <footer> del marco de las páginas renderizadas que apunte a la página de su proyecto en GitHub.
+Añadir a Quiz un Buscador de Preguntas
 
-2) Modificar el servidor Quiz para que sirva una nueva página con los datos de los autores de la práctica. Este desarrollo se realizará en una rama llamada créditos. Cree la rama creditos y cámbiese a ella para hacer el desarrollo pedido en este apartado.
+Se pide añadir un formulario de búsqueda en la página que muestra la lista de preguntas (/quizes). El formulario tendrá un campo para introducir el texto a buscar, y un botón enviar (submit). El resultado de la búsqueda contendrá todas las preguntas que contengan el texto introducido en el formulario ordenadas alfabéticamente.
 
-    Crear un nuevo enlace en la barra de navegación que apunte a la página de créditos. La ruta de acceso a esta página debe ser /author.
-    Modifique el router (routers/index.js) para que atienda las peticiones "GET /author" y sirva una nueva vista views/author.ejs con los datos de los autores o autor de la página, mostrando el nombre de los autores, su fotografía y un pequeño video (opcional) de 30 seg.
+Este desarrollo debe realizarse en una rama llamada busquedas, la cual se mezclara con la rama master una vez se haya terminado esta práctica.
 
-Cuando se haya terminado este desarrollo, integrelo en la rama master, y súbalo a GitHub.
+La ruta de la lista de preguntas podrá llevar una query opcional con el texto a buscar, quedando la primitiva del interfaz REST así:
 
-Una vez realizados y probados estos cambios, debe crearse una cuenta en heroku para desplegar allí el servidor desarrollado en esta práctica.
+GET  /quizes?search=texto_a_buscar
 
-Se deben seguir los mismos pasos explicados en las transparencias para realizar el despliegue.
+Esta primitiva devolverá la página con el listado de todas las preguntas que contengan el texto indicado, ordenadas alfabeticamente.
 
-Actualice GitHub con los cambios realizados en este apartado.
+El formulario de búsqueda deberá ser de tipo GET y enviar un parámetro "search" con el texto (string) buscado. De esta forma, si en el formulario se escribe Italia, al pulsar el botón de submit, se enviará al servidor: GET /quizes?search=Italia.
 
-El proyecto desarrollado en esta practica, junto con todas las modificaciones añadidas, debe subirse al repositorio creado en Github por los alumnos.
+Para implementar esta funcionalidad hay que modificar la acción index del controlador (controllers/quiz_controller.js) para que busque las preguntas que contienen el texto especificado en la query.
 
-Entregar en el texto de la entrega a MiriadaX
+Para realizar la búsqueda de las preguntas en la base de datos, use la función findAll de sequelize. Debe usar el operador LIKE y el comodín % en la condición WHERE. Debe usar un formato como este:
 
-1) El URL al despliegue en Heroku como un enlace clicable.
+findAll({where: ["pregunta like ?", search]}]
 
-2) El URL al proyecto en GITHUB como un enlace clicable.
-El evaluador debe comprobar que en Heroku se ha desplegado la aplicación con los cambios solicitados y que en GITHUB se ha subido el proyecto y que los cambios solicitados se han introducido en el último commit.
+No olvide delimitar el string contenido en search con el comodín % antes y después y cambie también los espacios en blanco por %. De esta forma, si busca "uno dos" ("%uno%dos%"), mostrará todas las preguntas que tengan "uno" seguido de "dos", independientemente de lo que haya entre "uno" y "dos".
+
+Finalmente, despliegue en heroku su practica y suba los cambios a GitHub.
