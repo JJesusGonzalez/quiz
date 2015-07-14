@@ -1,6 +1,6 @@
 exports.authors = function(req,res){
 	res.render('author', {
-				Avatar: '/images/foto.png',
+				Avatar: '/images/Avatar.png',
 				Nombre: 'J. Jesus Gonzalez',
 				Nacimiento: '1971',
 				Nacionalidad: 'Española',
