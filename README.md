@@ -3,36 +3,32 @@ JJesusGonzalez ® 2015
 Curso Desarrollo de servicios en la nube con HTML5, Javascript y node.js
 
 
-Modulo 7. Proyecto Quiz II: La Base de Datos (DB), Tablas, sequelize.js y SQLite; Despliegue en Heroku utilizando Postgres; Presentación de Listas de Quizes y Autoload  
-
- 
+Modulo 9. Proyecto Quiz IV: Creación y Moderación de Comentarios a Quizes; Relaciones entre Tablas de la Base de Datos; Sesiones, Autenticación y Autorización; HTTP Seguro (HTTPS)
 Ejercicio P2P Obligatorio
 
 Explicación de la tarea
 
+Añadir auto-logout de sesión
+ 
+Se pide añadir a la gestión de sesiones un mecanismo de autologout, de forma que si un usuario está inactivo (sin enviar ninguna solicitud HTTP) más de 2 minutos, la sesión se desconecte y deba volver a autenticarse para continuar.
 
+Para implementar esta funcionalidad se recomienda añadir un middleware de auto-logout en app.js que guarde en cada transacción la hora del reloj del sistema en una variable de la sesión a la que está asociada. El middleware debe comprobar en cada transacción con una sesión activa si la han transcurrido más de 2 minutos desde la transacción anterior en dicha sesión, en cuyo caso destruirá la sesión.
 
+Una vez realizados los cambios, debe guardarse una nueva versión (commit).
 
-Añadir a Quiz un Buscador de Preguntas
+Ampliación opcional: Añadir una página de estadisticas
+ 
+Las personas interesadas en practicar más con express y MVC, pueden añadir una página de estadisticas. La página de estadisticas estará accesible directamente desde la barra de navegación y mostrará las siguientes informaciones extraidas de la base de datos:
 
-Se pide añadir un formulario de búsqueda en la página que muestra la lista de preguntas (/quizes). El formulario tendrá un campo para introducir el texto a buscar, y un botón enviar (submit). El resultado de la búsqueda contendrá todas las preguntas que contengan el texto introducido en el formulario ordenadas alfabéticamente.
+El número de preguntas
+El número de comentarios totales
+El número medio de comentarios por pregunta
+El número de preguntas sin comentarios
+El número de preguntas con comentarios
+Para implementar esta funcionalidad habra que crear una nueva entrada en el interfaz REST de quizes asociada a la ruta
 
-Este desarrollo debe realizarse en una rama llamada busquedas, la cual se mezclara con la rama master una vez se haya terminado esta práctica.
+     GET /quizes/statistics
 
-La ruta de la lista de preguntas podrá llevar una query opcional con el texto a buscar, quedando la primitiva del interfaz REST así:
+Además habra que crear un nuevo controlador que extraiga la información de la base de datos y una nueva vista que la presente.
 
-GET  /quizes?search=texto_a_buscar
-
-Esta primitiva devolverá la página con el listado de todas las preguntas que contengan el texto indicado, ordenadas alfabeticamente.
-
-El formulario de búsqueda deberá ser de tipo GET y enviar un parámetro "search" con el texto (string) buscado. De esta forma, si en el formulario se escribe Italia, al pulsar el botón de submit, se enviará al servidor: GET /quizes?search=Italia.
-
-Para implementar esta funcionalidad hay que modificar la acción index del controlador (controllers/quiz_controller.js) para que busque las preguntas que contienen el texto especificado en la query.
-
-Para realizar la búsqueda de las preguntas en la base de datos, use la función findAll de sequelize. Debe usar el operador LIKE y el comodín % en la condición WHERE. Debe usar un formato como este:
-
-findAll({where: ["pregunta like ?", search]}]
-
-No olvide delimitar el string contenido en search con el comodín % antes y después y cambie también los espacios en blanco por %. De esta forma, si busca "uno dos" ("%uno%dos%"), mostrará todas las preguntas que tengan "uno" seguido de "dos", independientemente de lo que haya entre "uno" y "dos".
-
-Finalmente, despliegue en heroku su practica y suba los cambios a GitHub.
+Una vez realizado habra que guardar esta funcionalidad en una nueva versión (commit). a continuación se desplegará la rama en heroku y se subirá a GitHub.
