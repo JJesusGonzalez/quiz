@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
 
 // Autoload de comandos con :quizId
 router.param('quizId'		, quizController.load); // autoload :quizId
-router.param('commentId'	, commentController.load); 
+router.param('commentId'	, commentController.load);
 
 router.get('/author'														, authorController.authors);
 
@@ -30,9 +30,9 @@ router.get('/quizes/:quizId(\\d+)/answer'									, quizController.answer);
 router.get('/quizes/new'													, sessionController.loginRequired, quizController.new);
 router.post('/quizes/create'												, sessionController.loginRequired, quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit'										, sessionController.loginRequired, quizController.edit);
-router.put('/quizes/:quizId(\\d+)'											, sessionController.loginRequired, quizController.update);		
+router.put('/quizes/:quizId(\\d+)'											, sessionController.loginRequired, quizController.update);
 router.delete('/quizes/:quizId(\\d+)'										, sessionController.loginRequired, quizController.destroy);
-	
+
 router.get('/temas'															, quizController.showtemas);
 router.get('/temas/:tema'													, quizController.showbytema);
 
@@ -44,5 +44,3 @@ router.get('/estadisticas'													, statsController.show);
 router.get('/db'															, dbController.show);
 
 module.exports = router;
-
-

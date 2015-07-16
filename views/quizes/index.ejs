@@ -1,5 +1,6 @@
+<section>
 <form method="get" action="/quizes?search=texto_a_buscar">
-	Introduzca contenido a buscar: 
+	Introduzca contenido a buscar:
 	<input type="text" name="search" value="Texto a buscar"/>
 	<input type="submit" value="Buscar">
 </form>
@@ -33,4 +34,4 @@
 <% if(session.user){%>
 	<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
 <%}%>
-
+</section>
